@@ -14,7 +14,7 @@ require 'header.php';
 <main>
 <?php
 require 'item.php';
-require 'catalog-with-keys.php';
+require 'multidimensional-catalog.php';
 ?>
 </main>
 
