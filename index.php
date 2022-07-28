@@ -10,11 +10,11 @@
 <?php
 require 'header.php';
 ?>
-
+<main>
 <?php
 require 'item.php';
 ?>
-
+</main>
 
 <?php
 require 'footer.php';
