@@ -13,7 +13,6 @@ require 'header.php';
 ?>
 <main>
 <?php
-require 'item.php';
 require 'multidimensional-catalog.php';
 ?>
 </main>

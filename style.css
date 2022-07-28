@@ -49,6 +49,7 @@ nav .button {
 
 main {
     display: flex;
+    flex-wrap: wrap;
 }
 
 main{
