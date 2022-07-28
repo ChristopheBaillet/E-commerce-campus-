@@ -33,8 +33,10 @@ nav .button {
 
 .card {
     border: 1px solid black;
-    width: auto;
+    width: 200px;
     padding: 1em;
+    display: flex;
+    flex-direction: column;
 }
 
 .card img{
