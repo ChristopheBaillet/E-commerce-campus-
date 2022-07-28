@@ -1,5 +1,8 @@
 <header>
     <nav>
-        <h1>Voici mon site de e-commerce</h1>
+        <div class="logo">
+            <h1><a href="#">Voici mon site de e-commerce</a></h1>
+        </div>
+        <a class="button" href="#">Click Me!</a>
     </nav>
 </header>
