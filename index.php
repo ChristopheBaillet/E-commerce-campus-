@@ -12,9 +12,9 @@
 require 'header.php';
 ?>
 <main>
-<?php
-require 'multidimensional-catalog.php';
-?>
+    <?php
+    require 'multidimensional-catalog.php';
+    ?>
 </main>
 
 <?php
