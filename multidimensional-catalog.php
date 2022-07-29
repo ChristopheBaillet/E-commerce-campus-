@@ -49,16 +49,22 @@ foreach ($products as $product) {
     <div class="card">
         <h1><?= $product['name'] ?></h1>
         <img src="<?= $product["picture_url"] ?>">
-        <p><?= $product["weight"] ?> g</p>
         <?php
         if ($product['discount'] !== null) {
             ?>
-            <p><?= $product["discount"] ?>% discount</p>
+            <p style="text-decoration: line-through red"><?= formatPrice($product["price"]) ?> € TTC</p>
+            <p>-<?=$product['discount']?>%</p>
+            <p>Prix : <?= discountPrice($product["price"], $product['discount']); ?>€</p>
             <?php
-        } ?>
-        <p>Prix TTC => <?= formatPrice($product["price"]) ?></p>
-        <p>Prix HT => <?= priceExcludingVAT($product["price"]) ?></p>
-        <p>Prix avec remise => <?= discountPrice($product["price"], 25) ?></p>
+        } else {?>
+            <p>Prix : <?= formatPrice($product["price"]) ?></p>
+                <?php
+        }?>
+        <form>
+            <label for="quantity">Quantité : </label>
+            <input type="number" id="quantity" name="quantity" min="1" max="100" step="1" value="1">
+            <input type="submit" class="form-input-button" value="Commandez !">
+        </form>
     </div>
     <?php
 }
