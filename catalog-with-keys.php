@@ -1,6 +1,6 @@
 <?php
 $iphone = [
-    "name" => "iPhone",
+    "name" => "Map",
     "price" => 450,
     "weight" => 220,
     "discount" => 10,
@@ -11,6 +11,5 @@ $iphone = [
     <h1><?= $iphone["name"] ?></h1>
     <img src="<?= $iphone["picture_url"] ?>">
     <p><?= $iphone["weight"] ?> g</p>
-    <p><?= $iphone["discount"] ?>% discount</p>
     <p><?= formatPrice($iphone["price"]) ?>€</p>
 </div>

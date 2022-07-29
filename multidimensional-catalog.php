@@ -1,9 +1,9 @@
 <?php
 require_once 'my-functions.php';
 $products = [
-    "iphone" => [
+    "iphone" =>[
         "name" => "iPhone",
-        "price" => 45000,
+        "price" => 45056,
         "weight" => 220,
         "discount" => 10,
         "picture_url" => "https://www.bouyguestelecom.fr/media/catalog/product//a/p/apple-iphone13-pro-max-argent-face.png",
@@ -40,7 +40,7 @@ $products = [
         "name" => "mouse",
         "price" => 5000,
         "weight" => 60,
-        "discount" => 25,
+        "discount" => null,
         "picture_url" => "https://image.darty.com/darty?type=image&source=/market/2018/02/21/mkp_0YhPtF1wxSBYnQ.jpeg&width=400&height=300&quality=90",
     ]
 ];
@@ -50,8 +50,15 @@ foreach ($products as $product) {
         <h1><?= $product['name'] ?></h1>
         <img src="<?= $product["picture_url"] ?>">
         <p><?= $product["weight"] ?> g</p>
-        <p><?= $product["discount"] ?>% discount</p>
-        <p><?= formatPrice($product["price"]) ?></p>
+        <?php
+        if ($product['discount'] !== null) {
+            ?>
+            <p><?= $product["discount"] ?>% discount</p>
+            <?php
+        } ?>
+        <p>Prix TTC => <?= formatPrice($product["price"]) ?></p>
+        <p>Prix HT => <?= priceExcludingVAT($product["price"]) ?></p>
+        <p>Prix avec remise => <?= discountPrice($product["price"], 25) ?></p>
     </div>
     <?php
 }
