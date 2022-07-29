@@ -12,5 +12,5 @@ $iphone = [
     <img src="<?= $iphone["picture_url"] ?>">
     <p><?= $iphone["weight"] ?> g</p>
     <p><?= $iphone["discount"] ?>% discount</p>
-    <p><?= $iphone["price"] ?>€</p>
+    <p><?= formatPrice($iphone["price"]) ?>€</p>
 </div>
