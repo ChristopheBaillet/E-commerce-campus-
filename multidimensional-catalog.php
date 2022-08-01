@@ -42,13 +42,49 @@ $products = [
         "weight" => 60,
         "discount" => null,
         "picture_url" => "imgs/souris.jpg",
+    ],
+    "mousee" => [
+        "name" => "Mouse",
+        "price" => 5000,
+        "weight" => 60,
+        "discount" => null,
+        "picture_url" => "imgs/souris.jpg",
+    ],
+    "mouseee" => [
+        "name" => "Mouse",
+        "price" => 5000,
+        "weight" => 60,
+        "discount" => null,
+        "picture_url" => "imgs/souris.jpg",
+    ],
+    "mouseeee" => [
+        "name" => "Mouse",
+        "price" => 5000,
+        "weight" => 60,
+        "discount" => null,
+        "picture_url" => "imgs/souris.jpg",
+    ],
+    "mouseeeee" => [
+        "name" => "Mouse",
+        "price" => 5000,
+        "weight" => 60,
+        "discount" => null,
+        "picture_url" => "imgs/souris.jpg",
+    ],
+    "mous" => [
+        "name" => "Mouse",
+        "price" => 5000,
+        "weight" => 60,
+        "discount" => null,
+        "picture_url" => "imgs/souris.jpg",
     ]
 ];
 ?>
-<div class="container-fluid col-12 d-flex">
+<h2>Products</h2>
+<div class="container-fluid d-flex flex-wrap">
     <?php foreach ($products as $product) {
         ?>
-        <div class="card col-4 me-3 ms-3" style="width: 18rem;">
+        <div class="card col-4 me-3 ms-3 mb-3 mt-3" style="width: 18rem;">
             <img src="<?= $product["picture_url"] ?>">
             <div class="card-body d-flex flex-column justify-content-between">
                 <div class="container">
@@ -57,12 +93,11 @@ $products = [
                     <?php
                     if ($product['discount'] !== null) {
                         ?>
-                        <p style="text-decoration: line-through red"><?= formatPrice($product["price"]) ?> € TTC</p>
-                        <p>-<?= $product['discount'] ?>%</p>
-                        <p>Prix : <?= discountPrice($product["price"], $product['discount']); ?>€</p>
+                        <p><span style="text-decoration: line-through red;"><?= formatPrice($product["price"]) ?> €</span> TTC  <strong>-<?= $product['discount'] ?>%</strong></p>
+                        <p>Prix : <strong><?= discountPrice($product["price"], $product['discount']); ?>€</strong></p>
                         <?php
                     } else { ?>
-                        <p>Prix : <?= formatPrice($product["price"]) ?></p>
+                        <p>Prix : <strong><?= formatPrice($product["price"]) ?>€</strong></p>
                         <?php
                     } ?>
                 </div>
@@ -72,7 +107,7 @@ $products = [
                             <label for="quantity">Quantité : </label>
                             <input type="number" id="quantity" name="quantity" min="1" max="100" step="1" value="1">
                         </div>
-                        <a class="btn btn-primary">Commandez !</a>
+                        <input class="btn btn-primary" value="Commandez" type="submit">
                     </form>
                 </div>
             </div>
