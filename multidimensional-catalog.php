@@ -93,11 +93,11 @@ $products = [
                     <?php
                     if ($product['discount'] !== null) {
                         ?>
-                        <p><span style="text-decoration: line-through red;"><?= formatPrice($product["price"]) ?> €</span> TTC  <strong>-<?= $product['discount'] ?>%</strong></p>
-                        <p>Prix : <strong><?= discountPrice($product["price"], $product['discount']); ?>€</strong></p>
+                        <p><span style="text-decoration: line-through red;"><?php formatPrice($product["price"]) ?> €</span> TTC  <strong>-<?= $product['discount'] ?>%</strong></p>
+                        <p>Prix : <strong><?php formatPrice(discountPrice($product["price"], $product['discount'])); ?>€</strong></p>
                         <?php
                     } else { ?>
-                        <p>Prix : <strong><?= formatPrice($product["price"]) ?>€</strong></p>
+                        <p>Prix : <strong><?php formatPrice($product["price"]) ?>€</strong></p>
                         <?php
                     } ?>
                 </div>
