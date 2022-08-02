@@ -63,7 +63,7 @@ $price_for_weight = priceForWeight($total_TTC,$total_weight);
         <td></td>
         <td></td>
         <td>
-            <form method="post"
+            <form method="post">
                 <select name="transporteur" id="select_transporteur">
                     <option value="La_poste">La poste</option>
                     <option value="Amazon">Amazon</option>
