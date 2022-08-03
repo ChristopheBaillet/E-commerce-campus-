@@ -22,3 +22,17 @@ function priceForWeight(int $price, int $weight): int
     }
     return (int)$price_for_weight;
 }
+
+function addItemToCart(string $key_item): void{
+
+}
+
+function deleteItemFromCart(string $key_item): void{
+
+}
+
+function emptyCart(array $keys):void {
+    for($i = 0; $i < count($keys); $i++){
+        array_pop($keys);
+    }
+}

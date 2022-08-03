@@ -42,39 +42,4 @@ $products = [
         "discount" => null,
         "picture_url" => "imgs/souris.jpg",
     ],
-    "mousee" => [
-        "name" => "Mouse",
-        "price" => 5000,
-        "weight" => 60,
-        "discount" => null,
-        "picture_url" => "imgs/souris.jpg",
-    ],
-    "mouseee" => [
-        "name" => "Mouse",
-        "price" => 5000,
-        "weight" => 60,
-        "discount" => null,
-        "picture_url" => "imgs/souris.jpg",
-    ],
-    "mouseeee" => [
-        "name" => "Mouse",
-        "price" => 5000,
-        "weight" => 60,
-        "discount" => null,
-        "picture_url" => "imgs/souris.jpg",
-    ],
-    "mouseeeee" => [
-        "name" => "Mouse",
-        "price" => 5000,
-        "weight" => 60,
-        "discount" => null,
-        "picture_url" => "imgs/souris.jpg",
-    ],
-    "mous" => [
-        "name" => "Mouse",
-        "price" => 5000,
-        "weight" => 60,
-        "discount" => null,
-        "picture_url" => "imgs/souris.jpg",
-    ]
 ];
