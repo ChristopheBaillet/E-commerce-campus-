@@ -31,8 +31,6 @@ function deleteItemFromCart(string $key_item): void{
 
 }
 
-function emptyCart(array $keys):void {
-    for($i = 0; $i < count($keys); $i++){
-        array_pop($keys);
-    }
+function emptyCart():void {
+    session_destroy();
 }

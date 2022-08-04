@@ -1,20 +1,15 @@
 <?php
+session_start();
 require_once 'my-functions.php';
 require_once 'product-list.php';
 $cart = [];
 global $products;
-$i=0;
-$total_TTC =0;
+$i = 0;
+$total_TTC = 0;
 $total_weight = 0;
-foreach ($products as $key => $product){
-    if ($_POST['quantity'][$i] !== "0"){
-        $cart[$key] = $product;
-        $cart[$key]['quantity'] = $_POST['quantity'][$i];
-    }
-    $i++;
-}
-foreach ($cart as $product){
-
+foreach ($_SESSION as $key => $product) {
+    $cart[$key] = $products[$key];
+    $cart[$key]['quantity'] = $_SESSION[$key]['quantity'];
 }
 ?>
 <!DOCTYPE html>
@@ -37,47 +32,47 @@ foreach ($cart as $product){
         <td>Total</td>
     </tr>
     <?php
-        foreach ($cart as $product){
-            $name = $product["name"];
-            $quantity = $product["quantity"];
-            $discount = $product['discount'];
-            $price_of_one_product = $product['price'];
-            if ($discount != null){
-                $price_of_one_product = discountPrice($price_of_one_product, $discount);
-            }
-            $total = $price_of_one_product * $quantity;
-            $total_TTC += $total;
-            $total_weight += $product['weight']*$quantity;
-            ?>
-            <tr>
-                <td><?= $name?></td>
-                <td><?= formatPrice($price_of_one_product)?></td>
-                <td><?= $quantity?></td>
-                <td><?= formatPrice($total)?></td>
-            </tr>
-       <?php }
+    foreach ($cart as $product) {
+        $name = $product["name"];
+        $quantity = $product["quantity"];
+        $discount = $product['discount'];
+        $price_of_one_product = $product['price'];
+        if ($discount != null) {
+            $price_of_one_product = discountPrice($price_of_one_product, $discount);
+        }
+        $total = $price_of_one_product * $quantity;
+        $total_TTC += $total;
+        $total_weight += $product['weight'] * $quantity;
+        ?>
+        <tr>
+            <td><?= $name ?></td>
+            <td><?php formatPrice($price_of_one_product) ?></td>
+            <td><?= $quantity ?></td>
+            <td><?php formatPrice($total) ?></td>
+        </tr>
+    <?php }
     $HT = priceExcludingVAT($total_TTC);
     $TVA = $total_TTC - $HT;
-    $price_for_weight = priceForWeight($total_TTC,$total_weight);
+    $price_for_weight = priceForWeight($total_TTC, $total_weight);
     ?>
     <tr>
         <td></td>
         <td></td>
         <td>Total :</td>
-        <td><?= formatPrice($total_TTC) ?></td>
+        <td><?php formatPrice($total_TTC) ?></td>
     </tr>
 
     <tr>
         <td></td>
         <td></td>
         <td>Total HT :</td>
-        <td><?= formatPrice($HT) ?></td>
+        <td><?php formatPrice($HT) ?></td>
     </tr>
     <tr>
         <td></td>
         <td></td>
         <td>TVA :</td>
-        <td><?= formatPrice($TVA) ?></td>
+        <td><?php formatPrice($TVA) ?></td>
     </tr>
     <tr>
         <td></td>
@@ -99,13 +94,13 @@ foreach ($cart as $product){
         <td></td>
         <td></td>
         <td>Prix transport :</td>
-        <td><?= formatPrice($price_for_weight)?></td>
+        <td><?php formatPrice($price_for_weight) ?></td>
     </tr>
     <tr>
         <td></td>
         <td></td>
         <td>Total TTC :</td>
-        <td><?= formatPrice($total_TTC+$price_for_weight) ?></td>
+        <td><?php formatPrice($total_TTC + $price_for_weight) ?></td>
     </tr>
 </table>
 <a href="index.php" class="btn btn-primary">Return</a>
