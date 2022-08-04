@@ -7,6 +7,10 @@ global $products;
 $i = 0;
 $total_TTC = 0;
 $total_weight = 0;
+$transporteur = "La poste";
+if (isset($_POST['transporteur'])){
+    $transporteur = $_POST['transporteur'];
+}
 foreach ($_SESSION as $key => $product) {
     $cart[$key] = $products[$key];
     $cart[$key]['quantity'] = $_SESSION[$key]['quantity'];
@@ -53,7 +57,7 @@ foreach ($_SESSION as $key => $product) {
     <?php }
     $HT = priceExcludingVAT($total_TTC);
     $TVA = $total_TTC - $HT;
-    $price_for_weight = priceForWeight($total_TTC, $total_weight);
+    $price_for_weight = priceForWeight($total_TTC, $total_weight, $transporteur);
     ?>
     <tr>
         <td></td>
