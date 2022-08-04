@@ -37,7 +37,7 @@ foreach ($_SESSION as $key => $product) {
         $quantity = $product["quantity"];
         $discount = $product['discount'];
         $price_of_one_product = $product['price'];
-        if ($discount != null) {
+        if ($discount !== null) {
             $price_of_one_product = discountPrice($price_of_one_product, $discount);
         }
         $total = $price_of_one_product * $quantity;

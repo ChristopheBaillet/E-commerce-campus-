@@ -2,16 +2,18 @@
 require_once 'my-functions.php';
 require_once 'product-list.php';
 global $products;
-if (isset($_POST['emptyCart'])){
+if (isset($_POST['emptyCart'])) {
     emptyCart();
 }
-if (isset($_POST['key'])){
-    if (!isset($_SESSION[$_POST['key']])){
-        $_SESSION[$_POST['key']] = ['name' => $_POST['key'], 'quantity' => $_POST['quantity']];
-    } elseif ($_SESSION[$_POST['key']]['quantity'] !== $_POST['quantity']){
-        $_SESSION[$_POST['key']]['quantity'] = $_POST['quantity'];
+if (isset($_POST['key'])) {
+    if (intval($_POST['quantity']) > 0) {
+        if (!isset($_SESSION[$_POST['key']])) {
+            $_SESSION[$_POST['key']] = ['name' => $_POST['key'], 'quantity' => $_POST['quantity']];
+        } elseif ($_SESSION[$_POST['key']]['quantity'] !== $_POST['quantity']) {
+            $_SESSION[$_POST['key']]['quantity'] = $_POST['quantity'];
+        }
     }
-}?>
+} ?>
 <h2>Products</h2>
 
 <div class="container-fluid d-flex flex-wrap" style="background-color: #d5d5d5">

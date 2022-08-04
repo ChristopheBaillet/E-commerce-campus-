@@ -9,7 +9,7 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <?php
-                if (count($_SESSION) != 0){ ?>
+                if (count($_SESSION) !== 0){ ?>
                     <a class="btn btn-primary" href="cart.php">Panier (<?= count($_SESSION)?>)</a>
                 <?php } else { ?>
                     <a class="btn btn-primary" href="cart.php">Panier</a>
