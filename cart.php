@@ -85,10 +85,10 @@ foreach ($_SESSION as $key => $product) {
         <td>
             <form method="post">
                 <select name="transporteur" id="select_transporteur">
-                    <option value="La_poste">La poste</option>
-                    <option value="Amazon">Amazon</option>
-                    <option value="daron">Mon daron</option>
-                    <option value="Musk">Elon Musk qui envoi ton colis sur Mars</option>
+                    <option <?php if($transporteur == 'La poste'){echo("selected");}?> value="La_poste">La poste</option>
+                    <option <?php if($transporteur == 'Amazon'){echo("selected");}?> value="Amazon">Amazon</option>
+                    <option <?php if($transporteur == 'daron'){echo("selected");}?> value="daron">Mon daron</option>
+                    <option <?php if($transporteur == 'Musk'){echo("selected");}?> value="Musk">Elon Musk qui envoi ton colis sur Mars</option>
                 </select>
                 <input type="submit" value="VALIDER" class="btn btn-light">
             </form>
