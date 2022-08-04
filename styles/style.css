@@ -1,19 +1,24 @@
-body, html {
-    height: 100%;
+html,
+body,
+main{
+    min-height: 100%;
 }
 
-main {
-    max-width: 1280px;
-    min-height: 100%;
-    margin: 0 auto;
+body {
+    margin-bottom: 200px;
+}
+
+html {
     position: relative;
 }
 
-
-footer {
-    background: #ccc;
-    bottom: 0;
-    width: 100%;
-    padding-top: 50px;
-    height: auto;
+#footer {
+    position: absolute;
+    height: 50px;
+    background-color: red;
+    bottom: 0px;
+    left: 0px;
+    right: 0px;
+    margin-bottom: 0px;
+    margin-top: 50px;
 }

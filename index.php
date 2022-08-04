@@ -15,7 +15,7 @@ require_once 'my-functions.php';
 <?php
 require 'header.php';
 ?>
-<main>
+<main class="col-10 container-fluid">
     <?php
     require 'multidimensional-catalog.php';
     ?>

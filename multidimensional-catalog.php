@@ -5,7 +5,7 @@ global $products;
 ?>
 <h2>Products</h2>
 <form method="post" action="cart.php">
-    <div class="container-fluid d-flex flex-wrap">
+    <div class="container-fluid d-flex flex-wrap" style="background-color: #d5d5d5">
         <?php foreach ($products as $key => $product) {
             ?>
             <div class="card col-4 me-3 ms-3 mb-3 mt-3" style="width: 15rem;">
@@ -42,6 +42,8 @@ global $products;
         }
 
         ?>
+    </div>
+    <div class="container d-flex justify-content-center" style="height: 100%">
         <input type="submit" class="btn btn-primary" value="Ajouter au panier">
     </div>
 </form>

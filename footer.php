@@ -1,12 +1,5 @@
-<footer class="text-center text-white" style="background-color: #21081a;">
-    <!-- Grid container -->
-    <div class="container p-4">
-        <ul>
-            <li>truc</li>
-            <li>truc</li>
-            <li>truc</li>
-            <li>truc</li>
-        </ul>
+<footer id="footer" class="py-3 bg-dark text-white-50 mt-3">
+    <div class="container text-center">
+        <small>Copyright &copy; Projet-Campus</small>
     </div>
-    <!-- Grid container -->
 </footer>
