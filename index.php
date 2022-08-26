@@ -17,14 +17,14 @@ require_once 'database.php';
 <?php
 // Souvent on identifie cet objet par la variable $conn ou $db
 $mysqlConnection = new PDO(
-    'mysql:host=localhost;dbname=test;charset=utf8',
+    'mysql:host=localhost;dbname=boutique;charset=utf8',
     'Christophe'
 );
 $products = selectAllElementsFromTable($mysqlConnection, 'products');
 ?>
 <pre>
 <?php
-var_dump($products);
+//var_dump($products);
 ?>
 </pre>
 <?php
