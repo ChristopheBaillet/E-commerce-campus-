@@ -1,7 +1,5 @@
 <?php
 session_start();
-require_once 'my-functions.php';
-require_once 'database.php';
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -14,19 +12,6 @@ require_once 'database.php';
     <link href="styles/style.css" rel="stylesheet">
 </head>
 <body>
-<?php
-// Souvent on identifie cet objet par la variable $conn ou $db
-$mysqlConnection = new PDO(
-    'mysql:host=localhost;dbname=boutique;charset=utf8',
-    'Christophe'
-);
-$products = selectAllElementsFromTable($mysqlConnection, 'products');
-?>
-<pre>
-<?php
-//var_dump($products);
-?>
-</pre>
 <?php
 require 'header.php';
 ?>

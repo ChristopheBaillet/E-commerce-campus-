@@ -1,9 +1,10 @@
 <?php
 session_start();
 require_once 'my-functions.php';
-require_once 'product-list.php';
+require_once "database.php";
+$mysqlConnection = Connection();
+$products = selectAllElementsFromTable($mysqlConnection, 'products');
 $cart = [];
-global $products;
 $i = 0;
 $total_TTC = 0;
 $total_weight = 0;
@@ -12,8 +13,7 @@ if (isset($_POST['transporteur'])){
     $transporteur = $_POST['transporteur'];
 }
 foreach ($_SESSION as $key => $product) {
-    $cart[$key] = $products[$key];
-    $cart[$key]['quantity'] = $_SESSION[$key]['quantity'];
+    $cart[$key] = $product;
 }
 ?>
 <!DOCTYPE html>
@@ -38,9 +38,9 @@ foreach ($_SESSION as $key => $product) {
     <?php
     foreach ($cart as $product) {
         $name = $product["name"];
-        $quantity = $product["quantity"];
-        $discount = $product['discount'];
-        $price_of_one_product = $product['price'];
+        $quantity = intval($product["quantity_purchased"]);
+        $discount = intval($product['discount']);
+        $price_of_one_product = intval($product['price']);
         if ($discount !== null) {
             $price_of_one_product = discountPrice($price_of_one_product, $discount);
         }
