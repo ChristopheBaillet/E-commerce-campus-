@@ -4,13 +4,22 @@ require_once 'database.php';
 // Souvent on identifie cet objet par la variable $conn ou $db
 $mysqlConnection = Connection();
 $products = selectAllElementsFromTable($mysqlConnection, 'products');
+$orders = selectAllElementsFromTable($mysqlConnection, 'orders');
+$order_products = selectAllElementsFromTable($mysqlConnection, 'order_product');
+?>
+<pre>
+    <?php
+var_dump($orders,$order_products);
+?>
+</pre>
+<?php
  if (isset($_POST['emptyCart'])) {
     emptyCart();
 }
 if (isset($_POST['name'])) {
     if (intval($_POST['quantity_purchased']) > 0) {
         if (!isset($_SESSION[$_POST['name']])) {
-            $_SESSION[$_POST['name']] = ['name' => $_POST['name'], 'quantity_purchased' => $_POST['quantity_purchased'], 'price' => $_POST['price'], 'discount' => $_POST['discount'], 'weight' => $_POST['weight']];
+            $_SESSION[$_POST['name']] = ['name' => $_POST['name'], 'quantity_purchased' => $_POST['quantity_purchased'], 'price' => $_POST['price'], 'discount' => $_POST['discount'], 'weight' => $_POST['weight'], 'id' => $_POST['id']];
         } elseif ($_SESSION[$_POST['name']]['quantity_purchased'] !== $_POST['quantity_purchased']) {
             $_SESSION[$_POST['name']]['quantity_purchased'] = $_POST['quantity_purchased'];
         }
@@ -47,6 +56,7 @@ if (isset($_POST['name'])) {
                         <div class="container mb-3 ps-0 pe-0">
                             <label class="mb-1" for="quantity_purchased">Quantité : </label>
                             <input class="mb-3" type="number" name="quantity_purchased" min="0" value="0">
+                            <input type="hidden" value="<?= $product['id'] ?>" name="id">
                             <input type="hidden" value="<?= $product['name'] ?>" name="name">
                             <input type="hidden" value="<?= $product['price'] ?>" name="price">
                             <input type="hidden" value="<?= $product['discount'] ?>" name="discount">

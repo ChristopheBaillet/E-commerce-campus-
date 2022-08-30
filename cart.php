@@ -13,8 +13,10 @@ if (isset($_POST['transporteur'])){
     $transporteur = $_POST['transporteur'];
 }
 foreach ($_SESSION as $key => $product) {
+    var_dump($product);
     $cart[$key] = $product;
 }
+var_dump($cart);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -108,6 +110,15 @@ foreach ($_SESSION as $key => $product) {
     </tr>
 </table>
 <a href="index.php" class="btn btn-primary">Return</a>
+<form method="post" action="order.php">
+    <?php
+    foreach ($cart as $key => $product) {
+        $product = serialize($product);
+        echo "<input type='hidden' name='$key' value='$product'>";
+    }
+    ?>
+    <input type="submit" value="Valider la commande" class="btn btn-success">
+</form>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa"
         crossorigin="anonymous"></script>
