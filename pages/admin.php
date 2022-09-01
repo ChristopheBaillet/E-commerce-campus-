@@ -1,5 +1,5 @@
 <?php
-require_once 'database.php';
+require_once '../assets/database.php';
 $db = Connection();
 if (isset($_POST['soustract'])){
     SoustractQuantityfromStock($db, $_POST['id'], $_POST['quantity']);

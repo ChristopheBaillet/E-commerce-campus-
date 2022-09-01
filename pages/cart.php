@@ -1,7 +1,7 @@
 <?php
 session_start();
-require_once 'my-functions.php';
-require_once "database.php";
+require_once '../assets/my-functions.php';
+require_once "../assets/database.php";
 $mysqlConnection = Connection();
 $products = selectAllElementsFromTable($mysqlConnection, 'products');
 $cart = [];
@@ -109,7 +109,7 @@ var_dump($cart);
         <td><?php formatPrice($total_TTC + $price_for_weight) ?></td>
     </tr>
 </table>
-<a href="index.php" class="btn btn-primary">Return</a>
+<a href="../index.php" class="btn btn-primary">Return</a>
 <form method="post" action="order.php">
     <?php
     foreach ($cart as $key => $product) {

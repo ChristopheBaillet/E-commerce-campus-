@@ -96,3 +96,9 @@ function displayItem(Item $item): void
     </div>
     <?php
 }
+function displayCatalogue(Catalogue $catalogue): void
+{
+    foreach ($catalogue->items as $item) {
+        displayItem($item);
+    }
+}

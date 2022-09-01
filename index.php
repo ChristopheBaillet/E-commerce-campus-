@@ -13,17 +13,17 @@ session_start();
 </head>
 <body>
 <?php
-require 'header.php';
+require 'includes/header.php';
 ?>
 <main class="col-10 container-fluid">
     <?php
 
-    require 'multidimensional-catalog.php';
+    require 'includes/multidimensional-catalog.php';
     ?>
 </main>
 
 <?php
-require 'footer.php';
+require 'includes/footer.php';
 ?>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa"

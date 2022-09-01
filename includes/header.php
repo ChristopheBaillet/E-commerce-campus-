@@ -8,18 +8,10 @@
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <?php
-                if (count($_SESSION) !== 0){ ?>
-                    <a class="btn btn-primary" href="cart.php">Panier (<?= count($_SESSION)?>)</a>
-                <?php } else { ?>
-                    <a class="btn btn-primary" href="cart.php">Panier</a>
-                <?php }
-                ?>
+                <a class="btn btn-primary" href="pages/cart.php">Panier (<?= count($_SESSION)?>)</a>
             </div>
-            <a class="btn btn-secondary" href="admin.php">Admin</a>
-            <form method="post">
-                <input  class="btn btn-light" type="submit" name="emptyCart" value="Vider le panier">
-            </form>
+            <a class="btn btn-secondary" href="pages/admin.php">Admin</a>
+            <a class="btn btn-light" href="pages/destroy_session.php">Vider le panier</a>
         </div>
     </nav>
 </header>
