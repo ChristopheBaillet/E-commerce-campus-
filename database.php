@@ -14,86 +14,6 @@ function Connection(): PDO{
     );
 }
 
-function SelectAllFromProductsWhereQuantityIsEqualToZero(PDO $db): array
-{
-    $query = "SELECT * FROM products WHERE quantity = 0";
-    $statement = $db->prepare($query);
-    $statement->execute();
-    return $statement->fetchAll(PDO::FETCH_ASSOC);
-}
-
-function SelectAllOrdersWhereDateIsEqualToToday(PDO $db): array
-{
-    $query = "SELECT * FROM orders WHERE date = CURDATE()";
-    $statement = $db->prepare($query);
-    $statement->execute();
-    return $statement->fetchAll(PDO::FETCH_ASSOC);
-}
-
-function SelectAllOrdersWhereDateIsLessThanTenDaysOld(PDO $db): array
-{
-    $query = "SELECT * FROM orders WHERE date > DATE_SUB(CURDATE(), INTERVAL 10 DAY)";
-    $statement = $db->prepare($query);
-    $statement->execute();
-    return $statement->fetchAll(PDO::FETCH_ASSOC);
-}
-
-function ListOfOrdersWithOrderNumberAndTotalPrice(PDO $db): array{
-    $query ="SELECT number, SUM((order_product.quantity*products.price)) AS total
-FROM orders
-    JOIN order_product ON (orders.id = order_product.order_id)
-    JOIN products ON (order_product.product_id = products.id)
-GROUP BY number";
-    $statement = $db->prepare($query);
-    $statement->execute();
-    return $statement->fetchAll(PDO::FETCH_ASSOC);
-}
-
-function ListOfProductsFromAnOrderWithASpecificID(PDO $db, string $order_id): array{
-    $query = "SELECT name,quantity,price
-FROM products
-WHERE id IN
-      (SELECT product_id
-       FROM order_product
-       WHERE order_id = $order_id);";
-    $statement = $db->prepare($query);
-    $statement->execute();
-    return $statement->fetchAll(PDO::FETCH_ASSOC);
-}
-
-function TotalPriceOfOrdersDoneToday(PDO $db): array{
-    $query = "SELECT SUM((order_product.quantity*products.price)) AS total
-FROM orders
-    JOIN order_product ON (orders.id = order_product.order_id)
-    JOIN products ON (order_product.product_id = products.id)
-WHERE date = CURDATE()";
-    $statement = $db->prepare($query);
-    $statement->execute();
-    return $statement->fetchAll(PDO::FETCH_ASSOC);
-}
-
-function ListOfOrdersWhereTotalPriceIsBetween100And550(PDO $db): array{
-    $query = "SELECT number, SUM((order_product.quantity*products.price)) AS total
-FROM orders
-         JOIN order_product ON (orders.id = order_product.order_id)
-         JOIN products ON (order_product.product_id = products.id)
-GROUP BY number
-HAVING total BETWEEN 100 AND 550";
-    $statement = $db->prepare($query);
-    $statement->execute();
-    return $statement->fetchAll(PDO::FETCH_ASSOC);
-}
-
-function NumberOfOrdersPerCustomer(PDO $db): array{
-    $query = "SELECT customers.first_name, customers.last_name, count(orders.number)
-FROM customers
-LEFT JOIN orders ON customers.id = orders.customer_id
-GROUP BY customers.first_name , customers.last_name";
-    $statement = $db->prepare($query);
-    $statement->execute();
-    return $statement->fetchAll(PDO::FETCH_ASSOC);
-}
-
 function AddAnOrder(PDO $db, int $customer_id): void{
     $query = "INSERT INTO orders (customer_id, date) VALUES ($customer_id, CURDATE())";
     $statement = $db->prepare($query);
@@ -125,4 +45,28 @@ function makeNumber(int $id):string{
             return '000000'.$id;
     }
     return '';
+}
+
+function SoustractQuantityfromStock(PDO $db, int $product_id, int $quantity): void{
+    $query = "UPDATE products SET quantity = quantity - $quantity WHERE id = $product_id";
+    $statement = $db->prepare($query);
+    $statement->execute();
+}
+
+function AddQuantityToStock(PDO $db, int $product_id, int $quantity): void{
+    $query = "UPDATE products SET quantity = quantity + $quantity WHERE id = $product_id";
+    $statement = $db->prepare($query);
+    $statement->execute();
+}
+
+function DeleteProductFromDatabase(PDO $db, int $product_id): void{
+    $query = "DELETE FROM products WHERE id = $product_id";
+    $statement = $db->prepare($query);
+    $statement->execute();
+}
+
+function AddProductToDatabase(PDO $db,int $category_id, string $name, string $description, string $image, int $price, int $weight, int $available, int $quantity, int $discount): void{
+    $query = "INSERT INTO `products`(`category_id`, `name`,`description`, `image`, `price`, `weight`, `available`, `quantity`, `discount`) VALUES ('$category_id','$name','$description','$image','$price','$weight','$available','$quantity', '$discount')";
+    $statement = $db->prepare($query);
+    $statement->execute();
 }

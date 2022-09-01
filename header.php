@@ -15,8 +15,8 @@
                     <a class="btn btn-primary" href="cart.php">Panier</a>
                 <?php }
                 ?>
-
             </div>
+            <a class="btn btn-secondary" href="admin.php">Admin</a>
             <form method="post">
                 <input  class="btn btn-light" type="submit" name="emptyCart" value="Vider le panier">
             </form>

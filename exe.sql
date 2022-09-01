@@ -1,1 +1,1 @@
-SELECT MAX(id) AS maximum FROM orders;
+INSERT INTO `products`(`category_id`, `name`, `description`, `image`, `price`, `weight`, `available`, `quantity`, `discount`) VALUES ('1','0','0','0','0','0','0','0','0')
