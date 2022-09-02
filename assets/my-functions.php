@@ -96,9 +96,17 @@ function displayItem(Item $item): void
     </div>
     <?php
 }
+
 function displayCatalogue(Catalogue $catalogue): void
 {
     foreach ($catalogue->items as $item) {
         displayItem($item);
     }
+}
+
+function displayClientList(ClientList $list): void
+{
+    echo "<pre>";
+    var_dump($list);
+    echo "</pre>";
 }

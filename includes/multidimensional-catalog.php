@@ -1,26 +1,42 @@
 <?php
 require_once 'assets/my-functions.php';
 require_once 'assets/database.php';
-require_once 'assets/item.php';
+require_once 'assets/Item.php';
 require_once 'assets/Catalogue.php';
-// Souvent on identifie cet objet par la variable $conn ou $db
-$mysqlConnection = Connection();
-$products = selectAllElementsFromTable($mysqlConnection, 'products');
-$orders = selectAllElementsFromTable($mysqlConnection, 'orders');
-$order_products = selectAllElementsFromTable($mysqlConnection, 'order_product');
+require_once 'assets/Mouse.php';
 
+// Souvent on identifie cet objet par la variable $conn ou $db
+$products = selectAllElementsFromTable(Connection(), 'products');
 $items = [];
+$colors = getColumnsFromTable(Connection(), 'mouse', 'color');
+$mouse = selectASpecificElementFromTable(Connection(), 'products', 'name', 'Mouse');
+$mouses = [];
+foreach ($colors as $key => $color) {
+    $mouses[] = $mouse;
+    $mouses[$key]['color'] = $color['color'];
+}
+?>
+<pre>
+    <?php
+    var_dump($mouses);
+    ?>
+    </pre>
+<?php
+$test= [];
+foreach ($mouses as $mouse) {
+    $test[] = new Mouse($mouse);
+}
+?>
+<pre>
+    <?php
+    var_dump($test);
+    ?>
+    </pre>
+<?php
 foreach ($products as $product) {
     $items[] = new Item($product);
 }
 $catalogue = new Catalogue($items);
-?>
-<pre>
-    <?php
-    var_dump($catalogue);
-    ?>
-</pre>
-<?php
 if (isset($_POST['name'])) {
     if (intval($_POST['quantity_purchased']) > 0) {
         if (!isset($_SESSION[$_POST['name']])) {
@@ -31,14 +47,10 @@ if (isset($_POST['name'])) {
     }
 } ?>
 <h2>Products</h2>
-
 <div class="container-fluid d-flex flex-wrap" style="background-color: #d5d5d5">
     <?php
     displayCatalogue($catalogue);
     ?>
-</div>
-<div class="container d-flex justify-content-center" style="height: 100%">
-
 </div>
 
 

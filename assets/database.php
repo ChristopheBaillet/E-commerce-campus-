@@ -70,3 +70,17 @@ function AddProductToDatabase(PDO $db,int $category_id, string $name, string $de
     $statement = $db->prepare($query);
     $statement->execute();
 }
+
+function getColumnsFromTable(PDO $db, string $table, string $column): array{
+    $query = "SELECT $column FROM $table";
+    $statement = $db->prepare($query);
+    $statement->execute();
+    return $statement->fetchAll(PDO::FETCH_ASSOC);
+}
+
+function selectASpecificElementFromTable(PDO $db, string $table, string $column, string $value): array{
+    $query = "SELECT * FROM $table WHERE $column = '$value'";
+    $statement = $db->prepare($query);
+    $statement->execute();
+    return $statement->fetch(PDO::FETCH_ASSOC);
+}
