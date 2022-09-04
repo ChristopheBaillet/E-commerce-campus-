@@ -1,7 +1,7 @@
 <?php
 class ClientList
 {
-    public array $customers;
+    private array $customers;
 
     public function __construct(array $customers)
     {

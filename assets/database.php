@@ -84,3 +84,10 @@ function selectASpecificElementFromTable(PDO $db, string $table, string $column,
     $statement->execute();
     return $statement->fetch(PDO::FETCH_ASSOC);
 }
+
+function getProductById(PDO $db, int $id): array{
+    $query = "SELECT * FROM products WHERE id = $id";
+    $statement = $db->prepare($query);
+    $statement->execute();
+    return $statement->fetch(PDO::FETCH_ASSOC);
+}

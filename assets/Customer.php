@@ -5,7 +5,7 @@ require_once '../assets/database.php';
 
 class Customer
 {
-    public ?string $first_name, $last_name, $address, $postal_code, $city;
+    private ?string $first_name, $last_name, $address, $postal_code, $city;
 
     public function __construct(array $customer)
     {
