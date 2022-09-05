@@ -12,7 +12,7 @@ foreach ($_SESSION as $value) {
 echo '<pre>';
 var_dump($Cart);
 echo '</pre>';
-//displayCart($Cart);
+displayCart($Cart);
 
 /*$i = 0;
 $total_TTC = 0;

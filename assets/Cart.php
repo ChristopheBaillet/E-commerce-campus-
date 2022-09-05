@@ -38,4 +38,10 @@ class Cart
         $this->items = $items;
     }
 
+    public function getQuantityPurchased($product_id):int
+    {
+        return $this->items[$product_id];
+    }
+
+
 }

@@ -108,8 +108,10 @@ function displayClientList(ClientList $list): void
     echo "</pre>";
 }
 
-function displayCart(Cart $cart)
+function displayCart(Cart $cart): void
 {
+    $total_TTC = 0;
+    $total_weight = 0;
     ?>
 
     <!DOCTYPE html>
@@ -132,17 +134,19 @@ function displayCart(Cart $cart)
         <td>Total</td>
     </tr>
     <?php
-    foreach ($cart as $product) {
-        $name = $product->name;
-        $quantity = intval($product->quantity);
+    foreach ($cart->getItems() as $key => $quantity_purchased) {
+        $product = getProductById(Connection(), $key);
+        $name = $product["name"];
+        $quantity = intval($quantity_purchased);
         $discount = intval($product['discount']);
         $price_of_one_product = intval($product['price']);
-        if ($discount !== null) {
+        if ($discount !== 0) {
             $price_of_one_product = discountPrice($price_of_one_product, $discount);
         }
         $total = $price_of_one_product * $quantity;
         $total_TTC += $total;
         $total_weight += $product['weight'] * $quantity;
+        $transporteur = "La Poste"
         ?>
         <tr>
             <td><?= $name ?></td>
@@ -218,7 +222,8 @@ function displayCart(Cart $cart)
 <a href="../index.php" class="btn btn-primary">Return</a>
 <form method="post" action="order.php">
     <?php
-    foreach ($cart as $key => $product) {
+    foreach ($cart->getItems() as $key => $quantity_purchased) {
+        $product = getProductById(Connection(), $key);
         $product = serialize($product);
         echo "<input type='hidden' name='$key' value='$product'>";
     }
