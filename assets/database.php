@@ -26,26 +26,6 @@ function LinkAnOrderProductToAnOrder(PDO $db, int $order_id, int $product_id, in
     $statement->execute();
 }
 
-function GetTheMaxOf(PDO $db, string $table, string $column): array{
-    $query = "SELECT MAX($column) AS maximum FROM $table";
-    $statement = $db->prepare($query);
-    $statement->execute();
-    return $statement->fetch(PDO::FETCH_ASSOC);
-}
-
-function makeNumber(int $id):string{
-    switch ($id){
-        case $id<10 :
-            return '000000000'.$id;
-        case $id<100:
-            return '00000000'.$id;
-        case $id<1000:
-            return '0000000'.$id;
-        case $id<10000:
-            return '000000'.$id;
-    }
-    return '';
-}
 
 function SoustractQuantityfromStock(PDO $db, int $product_id, int $quantity): void{
     $query = "UPDATE products SET quantity = quantity - $quantity WHERE id = $product_id";
@@ -71,19 +51,6 @@ function AddProductToDatabase(PDO $db,int $category_id, string $name, string $de
     $statement->execute();
 }
 
-function getColumnsFromTable(PDO $db, string $table, string $column): array{
-    $query = "SELECT $column FROM $table";
-    $statement = $db->prepare($query);
-    $statement->execute();
-    return $statement->fetchAll(PDO::FETCH_ASSOC);
-}
-
-function selectASpecificElementFromTable(PDO $db, string $table, string $column, string $value): array{
-    $query = "SELECT * FROM $table WHERE $column = '$value'";
-    $statement = $db->prepare($query);
-    $statement->execute();
-    return $statement->fetch(PDO::FETCH_ASSOC);
-}
 
 function getProductById(PDO $db, int $id): array{
     $query = "SELECT * FROM products WHERE id = $id";

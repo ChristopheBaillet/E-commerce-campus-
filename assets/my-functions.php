@@ -112,6 +112,10 @@ function displayCart(Cart $cart): void
 {
     $total_TTC = 0;
     $total_weight = 0;
+    $transporteur = "La poste";
+    if (isset($_POST['transporteur'])){
+        $transporteur = $_POST['transporteur'];
+    }
     ?>
 
     <!DOCTYPE html>
@@ -146,7 +150,6 @@ function displayCart(Cart $cart): void
         $total = $price_of_one_product * $quantity;
         $total_TTC += $total;
         $total_weight += $product['weight'] * $quantity;
-        $transporteur = "La Poste"
         ?>
         <tr>
             <td><?= $name ?></td>
@@ -220,16 +223,7 @@ function displayCart(Cart $cart): void
     </tr>
 </table>
 <a href="../index.php" class="btn btn-primary">Return</a>
-<form method="post" action="order.php">
-    <?php
-    foreach ($cart->getItems() as $key => $quantity_purchased) {
-        $product = getProductById(Connection(), $key);
-        $product = serialize($product);
-        echo "<input type='hidden' name='$key' value='$product'>";
-    }
-    ?>
-    <input type="submit" value="Valider la commande" class="btn btn-success">
-</form>
+<a href="../pages/order.php" class="btn btn-success">Valider la commande</a>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa"
         crossorigin="anonymous"></script>
