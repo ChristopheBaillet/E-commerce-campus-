@@ -4,12 +4,10 @@ class Catalogue
 {
     private array $items;
 
-    public function __construct()
+    public function __construct(PDO $db)
     {
-        $products = SelectAllElementsFromTable(Connection(), 'products');
-        foreach ($products as $product) {
-            $this->items[$product['id']] = new Item($product);
-        }
+        $products = SelectAllElementsFromTable($db, 'products');
+        $this->setItems($products);
     }
 
     public function getItems(): array
@@ -19,7 +17,9 @@ class Catalogue
 
     public function setItems(array $items): void
     {
-        $this->items = $items;
+        foreach ($items as $product) {
+            $this->items[$product['id']] = new Item($product);
+        }
     }
 
 

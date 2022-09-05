@@ -14,10 +14,27 @@ function Connection(): PDO{
     );
 }
 
-function AddAnOrder(PDO $db, int $customer_id): void{
+function getColumnsFromTable(PDO $db, string $table, string $column ):array {
+    $query = "SELECT $column FROM $table";
+    $statement = $db->prepare($query);
+    $statement->execute();
+    return $statement->fetchAll(PDO::FETCH_ASSOC);
+}
+
+function selectMouseFromProducts(PDO $db): array {
+    $query = "SELECT * FROM products WHERE name = 'Mouse'";
+    $statement = $db->query($query);
+    return $statement->fetch(PDO::FETCH_ASSOC);
+}
+
+function AddAnOrder(PDO $db, int $customer_id, array $products): void{
     $query = "INSERT INTO orders (customer_id, date) VALUES ($customer_id, CURDATE())";
     $statement = $db->prepare($query);
     $statement->execute();
+    $order_id = $db->lastInsertId();
+    foreach ($products as $value) {
+        LinkAnOrderProductToAnOrder($db, $order_id, $value['id'], $value['quantity_purchased']);
+    }
 }
 
 function LinkAnOrderProductToAnOrder(PDO $db, int $order_id, int $product_id, int $quantity): void{

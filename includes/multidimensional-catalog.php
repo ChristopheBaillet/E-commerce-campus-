@@ -15,12 +15,12 @@ if (isset($_POST['name'])) {
         }
     }
 }
-$catalogue = new Catalogue();
+$catalogue = new Catalogue(Connection());
 displayCatalogue($catalogue);
 
 // Souvent on identifie cet objet par la variable $conn ou $db
 /*$colors = getColumnsFromTable(Connection(), 'mouse', 'color');
-$mouse = selectASpecificElementFromTable(Connection(), 'products', 'name', 'Mouse');
+$mouse = selectMouseFromProducts(Connection());
 $mouses = [];
 foreach ($colors as $key => $color) {
     $mouses[] = $mouse;
@@ -29,6 +29,10 @@ foreach ($colors as $key => $color) {
 $test= [];
 foreach ($mouses as $mouse) {
     $test[] = new Mouse($mouse);
-}*/
+}
+echo "<pre>";
+var_dump($mouses);
+var_dump($test);
+echo "</pre>";*/
 
 
